@@ -17,11 +17,16 @@ namespace Vortice.Direct3D12
 
         public RootParameterType ParameterType => _parameterType;
 
-        public RootDescriptorTable DescriptorTable
+        public unsafe RootDescriptorTable DescriptorTable
         {
             get
             {
                 var result = new RootDescriptorTable();
+
+                result.Ranges = new Span<DescriptorRange>(
+                    (void*) _union.DescriptorTable.PDescriptorRanges, 
+                    _union.DescriptorTable.NumDescriptorRanges).ToArray();
+
                 result.__MarshalFrom(_union.DescriptorTable);
                 return result;
             }
