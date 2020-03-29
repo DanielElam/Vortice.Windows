@@ -34,7 +34,6 @@ namespace Vortice.Direct3D12
         {
             var commandListsPtr = (IntPtr*)0;
 
-            count = commandLists.Length;
             IntPtr* tempPtr = stackalloc IntPtr[count];
             commandListsPtr = tempPtr;
             for (int i = 0; i < count; i++)
