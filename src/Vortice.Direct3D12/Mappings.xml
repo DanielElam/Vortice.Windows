@@ -565,7 +565,7 @@
     <map method="ID3D12Device::GetDeviceRemovedReason" check="false"/>
 
     <map method="ID3D12Device::CreateCommittedResource" visibility="private"/>
-    <map param="ID3D12Device::CreateCommittedResource::ppvResource" attribute="out" type="ID3D12Resource" return="true"/>
+    <!-- <map param="ID3D12Device::CreateCommittedResource::ppvResource" attribute="out" type="System.IntPtr" return="true"/>-->
 
     <map method="ID3D12Device::CreateCommandQueue" visibility="private"/>
     <map param="ID3D12Device::CreateCommandQueue::ppCommandQueue" attribute="out" type="ID3D12CommandQueue" return="true"/>
@@ -601,10 +601,10 @@
     <map param="ID3D12Device::CreateQueryHeap::ppvHeap" attribute="out" type="ID3D12QueryHeap" return="true"/>
 
     <map method="ID3D12Device::CreatePlacedResource" visibility="private"/>
-    <map param="ID3D12Device::CreatePlacedResource::ppvResource" attribute="out" type="ID3D12Resource" return="true"/>
+    <!--<map param="ID3D12Device::CreatePlacedResource::ppvResource" attribute="out" type="System.IntPtr" return="true"/>-->
 
     <map method="ID3D12Device::CreateReservedResource" visibility="private"/>
-    <map param="ID3D12Device::CreateReservedResource::ppvResource" attribute="out" type="ID3D12Resource" return="true"/>
+    <!--<map param="ID3D12Device::CreateReservedResource::ppvResource" attribute="out" type="System.IntPtr" return="true"/>-->
 
     <map method="ID3D12Device::CreateSharedHandle" visibility="private" name="CreateSharedHandlePrivate"/>
     <map param="ID3D12Device::CreateSharedHandle::pHandle" attribute="out" return="true"/>
@@ -677,7 +677,7 @@
 
     <!-- ID3D12GraphicsCommandList -->
     <map param="ID3D12GraphicsCommandList::ResourceBarrier::pBarriers" type="void"/>
-    <map method="ID3D12GraphicsCommandList::ResourceBarrier" visibility="private"/>
+    <map method="ID3D12GraphicsCommandList::ResourceBarrier" visibility="public"/>
     <map method="ID3D12GraphicsCommandList::SetPipelineState" property="false"/>
     <map method="ID3D12GraphicsCommandList::SetComputeRootSignature" property="false"/>
     <map method="ID3D12GraphicsCommandList::SetGraphicsRootSignature" property="false"/>

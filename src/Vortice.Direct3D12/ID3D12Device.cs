@@ -188,19 +188,19 @@ namespace Vortice.Direct3D12
             return RootSignatureVersion.Version10;
         }
 
-        public ID3D12Resource CreateCommittedResource(HeapProperties heapProperties,
+        public void CreateCommittedResource(HeapProperties heapProperties,
             HeapFlags heapFlags,
             ResourceDescription description,
             ResourceStates initialResourceState,
-            ClearValue? optimizedClearValue = null)
+            ClearValue? optimizedClearValue, out IntPtr resourcePtr)
         {
-            return CreateCommittedResource(
+            CreateCommittedResource(
                 ref heapProperties,
                 heapFlags,
                 ref description,
                 initialResourceState,
                 optimizedClearValue,
-                typeof(ID3D12Resource).GUID);
+                typeof(ID3D12Resource).GUID, out resourcePtr);
         }
 
         public ID3D12CommandQueue CreateCommandQueue(CommandListType type, int priority = 0, CommandQueueFlags flags = CommandQueueFlags.None, int nodeMask = 0)
@@ -398,19 +398,19 @@ namespace Vortice.Direct3D12
             return CreateQueryHeap(description, typeof(ID3D12QueryHeap).GUID);
         }
 
-        public ID3D12Resource CreatePlacedResource(
+        public void CreatePlacedResource(
             ID3D12Heap heap,
             long heapOffset,
             ResourceDescription resourceDescription,
             ResourceStates initialState,
-            ClearValue? clearValue = null)
+            ClearValue? clearValue, out IntPtr resourcePtr)
         {
-            return CreatePlacedResource(heap, heapOffset, ref resourceDescription, initialState, clearValue, typeof(ID3D12Resource).GUID);
+            CreatePlacedResource(heap, heapOffset, ref resourceDescription, initialState, clearValue, typeof(ID3D12Resource).GUID, out resourcePtr);
         }
 
-        public ID3D12Resource CreateReservedResource(ResourceDescription resourceDescription, ResourceStates initialState, ClearValue? clearValue = null)
+        public void CreateReservedResource(ResourceDescription resourceDescription, ResourceStates initialState, ClearValue? clearValue, out IntPtr resourcePtr)
         {
-            return CreateReservedResource(ref resourceDescription, initialState, clearValue, typeof(ID3D12Resource).GUID);
+            CreateReservedResource(ref resourceDescription, initialState, clearValue, typeof(ID3D12Resource).GUID, out resourcePtr);
         }
 
         public IntPtr CreateSharedHandle(ID3D12DeviceChild deviceChild, SecurityAttributes? attributes, string name)

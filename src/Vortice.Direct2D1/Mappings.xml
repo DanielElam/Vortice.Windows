@@ -559,7 +559,7 @@
     <map param="IDWriteFontFace::GetGdiCompatibleMetrics::fontFaceMetrics" return="true" />
     <map method="IDWriteFontFace::GetGlyphIndicesW" visibility="internal" />
     <map param="IDWriteFontFace::GetRecommendedRenderingMode::renderingMode" return="true" />
-    <map method="IDWriteFontFace::TryGetFontTable" visibility="internal" />
+    <map method="IDWriteFontFace::TryGetFontTable" visibility="public" />
     <map method="IDWriteFontFace::GetType" name="GetFaceType" />
     <map param="IDWriteFontFace::GetGlyphRunOutline::glyphCount" relation="length(glyphIndices)" />
     
