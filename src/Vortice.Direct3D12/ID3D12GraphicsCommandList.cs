@@ -48,6 +48,12 @@ namespace Vortice.Direct3D12
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public unsafe void ResourceBarrier(int barrierCount, ResourceBarrier* barriers)
+        {
+            ResourceBarrier(barrierCount, new IntPtr(barriers));
+        }
+
         public void ClearRenderTargetView(CpuDescriptorHandle renderTargetView, in System.Drawing.Color color)
         {
             ClearRenderTargetView(renderTargetView, new Color4(color), 0, null);
@@ -263,12 +269,24 @@ namespace Vortice.Direct3D12
             }
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public unsafe void OMSetRenderTargets(int renderTargetDescriptorsCount, CpuDescriptorHandle* renderTargetDescriptors, CpuDescriptorHandle? depthStencilDescriptor = null)
+        {
+            OMSetRenderTargets(renderTargetDescriptorsCount, new IntPtr(renderTargetDescriptors), false, depthStencilDescriptor);
+        }
+
         public unsafe void IASetVertexBuffers(int startSlot, int viewsCount, VertexBufferView[] vertexBufferViews)
         {
             fixed (void* descPtr = vertexBufferViews)
             {
                 IASetVertexBuffers(startSlot, viewsCount, new IntPtr(descPtr));
             }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public unsafe void IASetVertexBuffers(int startSlot, int viewsCount, VertexBufferView* vertexBufferViews)
+        {
+            IASetVertexBuffers(startSlot, viewsCount, new IntPtr(vertexBufferViews));
         }
 
         public unsafe void IASetVertexBuffers(int startSlot, params VertexBufferView[] vertexBufferViews)
