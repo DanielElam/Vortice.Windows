@@ -12,7 +12,7 @@ namespace Vortice.Direct3D12
         /// <summary>	
         /// The address of  the descriptor.
         /// </summary>	
-        public PointerSize Ptr;
+        public long Ptr;
 
         /// <summary>
         /// Adds an offset to a descriptor handle

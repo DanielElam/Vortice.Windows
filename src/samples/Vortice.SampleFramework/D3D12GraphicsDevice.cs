@@ -124,7 +124,8 @@ namespace Vortice
             SwapChain = swapChain.QueryInterface<IDXGISwapChain3>();
             _frameIndex = SwapChain.GetCurrentBackBufferIndex();
 
-            _rtvHeap = _d3d12Device.CreateDescriptorHeap(new DescriptorHeapDescription(DescriptorHeapType.RenderTargetView, FrameCount));
+            var h = _d3d12Device.CreateDescriptorHeap(new DescriptorHeapDescription(DescriptorHeapType.RenderTargetView, FrameCount));
+            _rtvHeap = new ID3D12DescriptorHeap(h);
             _rtvDescriptorSize = _d3d12Device.GetDescriptorHandleIncrementSize(DescriptorHeapType.RenderTargetView);
 
             // Create frame resources.
@@ -202,11 +203,12 @@ namespace Vortice
 
             var vertexBufferSize = 3 * Unsafe.SizeOf<Vertex>();
 
-            _vertexBuffer = _d3d12Device.CreateCommittedResource(
+            _d3d12Device.CreateCommittedResource(
                 new HeapProperties(HeapType.Upload),
                 HeapFlags.None,
                 ResourceDescription.Buffer(vertexBufferSize),
-                ResourceStates.GenericRead);
+                ResourceStates.GenericRead, null, out var vb);
+            _vertexBuffer = new ID3D12Resource(vb);
 
             var triangleVertices = new Vertex[]
             {

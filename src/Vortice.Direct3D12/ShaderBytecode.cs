@@ -36,7 +36,7 @@ namespace Vortice.Direct3D12
 
         #region Marshal
         [StructLayout(LayoutKind.Sequential, Pack = 0)]
-        internal struct __Native
+        public struct __Native
         {
             public IntPtr Bytecode;
 

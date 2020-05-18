@@ -571,7 +571,7 @@
     <map param="ID3D12Device::CreateCommandQueue::ppCommandQueue" attribute="out" type="ID3D12CommandQueue" return="true"/>
 
     <map method="ID3D12Device::CreateDescriptorHeap" visibility="private"/>
-    <map param="ID3D12Device::CreateDescriptorHeap::ppvHeap" attribute="out" type="ID3D12DescriptorHeap" return="true"/>
+    <!-- <map param="ID3D12Device::CreateDescriptorHeap::ppvHeap" attribute="out" type="ID3D12DescriptorHeap" return="true"/>-->
 
     <map method="ID3D12Device::CreateCommandAllocator" visibility="private"/>
     <map param="ID3D12Device::CreateCommandAllocator::ppCommandAllocator" attribute="out" type="ID3D12CommandAllocator" return="true"/>
@@ -669,7 +669,7 @@
     <map method="ID3D12Debug3::SetGPUBasedValidationFlags" property="false" />
 
     <!-- ID3D12Debug3 -->
-    <map method="ID3D12CommandQueue::ExecuteCommandLists" visibility="private"/>
+    <map method="ID3D12CommandQueue::ExecuteCommandLists"/>
     <map param="ID3D12CommandQueue::ExecuteCommandLists::ppCommandLists" type="void" />
     <map method="ID3D12CommandQueue::BeginEvent" visibility="private"/>
     <map method="ID3D12CommandQueue::SetMarker" visibility="private"/>

@@ -56,7 +56,6 @@ namespace Vortice.Direct3D12
 
         public PipelineStateFlags Flags { get; set; }
 
-        #region Marshal
         internal struct __Native
         {
             public IntPtr RootSignature;
@@ -138,6 +137,5 @@ namespace Vortice.Direct3D12
             CachedPSO.__MarshalTo(ref @ref.CachedPSO);
             @ref.Flags = Flags;
         }
-        #endregion
     }
 }

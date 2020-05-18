@@ -218,9 +218,10 @@ namespace Vortice.Direct3D12
             return CreateCommandQueue(description, typeof(ID3D12CommandQueue).GUID);
         }
 
-        public ID3D12DescriptorHeap CreateDescriptorHeap(DescriptorHeapDescription description)
+        public IntPtr CreateDescriptorHeap(DescriptorHeapDescription description)
         {
-            return CreateDescriptorHeap(description, typeof(ID3D12DescriptorHeap).GUID);
+            CreateDescriptorHeap(description, typeof(ID3D12DescriptorHeap).GUID, out var heapOut);
+            return heapOut;
         }
 
         public ID3D12CommandAllocator CreateCommandAllocator(CommandListType type)
@@ -388,9 +389,23 @@ namespace Vortice.Direct3D12
             return CreateComputePipelineState(description, typeof(ID3D12PipelineState).GUID);
         }
 
-        public ID3D12PipelineState CreateGraphicsPipelineState(GraphicsPipelineStateDescription description)
+        public unsafe ID3D12PipelineState CreateGraphicsPipelineState(GraphicsPipelineStateDescription description)
         {
             return CreateGraphicsPipelineState(description, typeof(ID3D12PipelineState).GUID);
+        }
+
+        internal unsafe ID3D12PipelineState CreateGraphicsPipelineState(GraphicsPipelineStateDescription.__Native* description, Guid riid)
+        {
+            Vortice.Direct3D12.ID3D12PipelineState pipelineStateOut;
+            System.IntPtr pipelineStateOut_ = System.IntPtr.Zero;
+            SharpGen.Runtime.Result __result__;
+            __result__ = Vortice.Direct3D12.LocalInterop.CalliStdCallint(this._nativePointer, description, &riid, &pipelineStateOut_, (*(void***)this._nativePointer)[10]);
+            if (pipelineStateOut_ != System.IntPtr.Zero)
+                pipelineStateOut = new Vortice.Direct3D12.ID3D12PipelineState(pipelineStateOut_);
+            else
+                pipelineStateOut = null;
+            __result__.CheckError();
+            return pipelineStateOut;
         }
 
         public ID3D12QueryHeap CreateQueryHeap(QueryHeapDescription description)
